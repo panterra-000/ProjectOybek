@@ -96,7 +96,7 @@
                         </div>
                         <div class="aboutUser">
                             <p>Active</p>
-                            <p>+998{{ user.phone }}</p>
+                            <p>{{ user.phone }}</p>
                             <p>Designer</p>
                         </div>
                     </div>
@@ -115,9 +115,7 @@
 <script>
 
 import axios from 'axios'
-// import BASE_URL from '../../../consts/getBaseUrl'
 import LoaderView from '../components/LoaderView.vue'
-import router from '@/router'
 
 
 export default {

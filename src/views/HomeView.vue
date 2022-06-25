@@ -87,7 +87,7 @@
                             <p>Position</p>
                         </div>
                     </div>
-                    <div v-for="user in users" :key="user" class="usersContainer">
+                    <div v-for="user in users" @click="openAbout(user)" :key="user" class="usersContainer">
                         <div  class="avatar">
                             <input type="checkbox">
                                 <img v-if="user.image" class="itemAvatar" :src="user.image" alt="">
@@ -117,6 +117,7 @@
 import axios from 'axios'
 // import BASE_URL from '../../../consts/getBaseUrl'
 import LoaderView from '../components/LoaderView.vue'
+import router from '@/router'
 
 
 export default {
@@ -137,6 +138,9 @@ methods:{
             this.showLoader = !this.showLoader
         },
 
+    openAbout(user){
+         this.$router.push('/about/' + user.id )   
+    },
     getUsers(){
         this.changeLoadervisibility()
         axios.get("http://192.168.1.104:8000/users/",{

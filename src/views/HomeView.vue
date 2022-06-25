@@ -87,15 +87,16 @@
                             <p>Position</p>
                         </div>
                     </div>
-                    <div v-for="index in [1,2,3,5,6,7]" :key="index" class="usersContainer">
+                    <div v-for="user in users" :key="user" class="usersContainer">
                         <div  class="avatar">
                             <input type="checkbox">
-                            <span class="usersAvatar"></span>
-                            <span>Andrew Bojalar</span>
+                                <img v-if="user.image" class="itemAvatar" :src="user.image" alt="">
+                                <img v-else class="itemAvatar" src="../assets/images/avatar_img.png" alt="">
+                            <span>{{ user.first_name }}  {{ user.last_name }}</span>
                         </div>
                         <div class="aboutUser">
                             <p>Active</p>
-                            <p>+989899898</p>
+                            <p>+998{{ user.phone }}</p>
                             <p>Designer</p>
                         </div>
                     </div>
@@ -106,10 +107,54 @@
 </body>
 
 </html>
+
+ <LoaderView v-if="showLoader" /> 
+
 </template>
 
 <script>
+
+import axios from 'axios'
+// import BASE_URL from '../../../consts/getBaseUrl'
+import LoaderView from '../components/LoaderView.vue'
+
+
 export default {
+    components:{LoaderView},
+data(){
+    return{
+        showLoader:false,
+        users:[]
+    }
+},
+
+mounted(){
+    this.getUsers()
+},
+
+methods:{
+     changeLoadervisibility(){
+            this.showLoader = !this.showLoader
+        },
+
+    getUsers(){
+        this.changeLoadervisibility()
+        axios.get("http://192.168.1.104:8000/users/",{
+          
+        })
+        .then(response => {
+                      console.log(response)
+                      this.users = response.data
+                      this.changeLoadervisibility()
+                      console.log("Teacher: ",this.users)
+                      })  .catch(error =>{
+                          console.log(error)
+                          this.changeLoadervisibility()
+                        //   this.openDialog(error)
+        })
+        }
+}
+
 
 }
 </script>

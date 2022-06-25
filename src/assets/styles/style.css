@@ -263,4 +263,13 @@ main section .rightItem .users .usersContainer .aboutUser {
           align-items: center;
   gap: 80px;
 }
+
+.itemAvatar{
+  display: inline-block;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin: 0px;
+}
+
 /*# sourceMappingURL=style.css.map */

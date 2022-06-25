@@ -561,23 +561,53 @@ main section .rightItem .users .usersContainer .aboutUser {
   background-color: #C4C4C4;
 }
 
-.aboutUser .avatar button {
-  width: 150px;
-  height: 30px;
-  border: 1px solid #4825C2;
+ .btnCreate{
+  min-width: 180px;
+  padding: 10px;
+  background: rgb(4, 153, 4);
   border-radius: 10px;
-  color: #4825C2;
-  font-size: 14px;
-  background-color: transparent;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  cursor: pointer;
-  margin-top: 40px;
+  border: none;
+  color: white;
+  font-size: 16px;
 }
 
-.aboutUser .avatar button:hover {
-  background-color: #4825C2;
-  color: #ffff;
+.btnDisabled{
+  min-width: 180px;
+  padding: 10px;
+  background: rgb(58, 57, 68);
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-size: 16px;
+}
+
+.btnCreate:hover{
+background: rgb(22, 194, 22);
+}
+
+.btnCreate:active{
+  background:rgb(4, 153, 4);
+}
+
+.btnEdit{
+  min-width: 180px;
+  padding: 10px;
+  background: rgb(4, 57, 173);
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 10px;
+  margin-top: 50px;
+}
+
+
+.btnEdit:hover{
+background:  rgb(24, 85, 216);
+}
+
+.btnEdit:active{
+  background: rgb(4, 57, 173);
 }
 
 .aboutUser .dataUser {
@@ -612,5 +642,7 @@ main section .rightItem .users .usersContainer .aboutUser {
   height: 300px;
   border-radius: 50%;
 }
+
+
 
 /*# sourceMappingURL=style.css.map */

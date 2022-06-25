@@ -40,7 +40,8 @@
                 </div>
                 <button class="btnEdit">Edit data</button>
                 <br>
-                <button class="btn">Edit data</button>
+                <button v-if="openCredit" class="btnCreate">Open credit</button>
+                <button v-else class="btnDisabled">Open credit</button>
             </div>
         </section>
         <section class="container">
@@ -116,6 +117,7 @@ export default {
         showLoader:false,
         userData:null,
         id:this.$route.params.id,
+        openCredit:false
       }
     },
     mounted(){

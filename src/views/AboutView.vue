@@ -13,15 +13,15 @@
         <section class="aboutUser container">
             <div v-if="userData" class="dataUser">
                 <div class="data">
-                    <span>Имя</span>
+                    <span>First Name</span>
                     <p>{{ userData.first_name }}</p>
                 </div>
                 <div class="data">
-                    <span>Фамилия</span>
+                    <span>Last Name</span>
                     <p>{{ userData.last_name }}</p>
                 </div>
                 <div class="data">
-                    <span>Отчество</span>
+                    <span>Middle Name</span>
                     <p> - </p>
                 </div>
                 <div class="data">
@@ -29,9 +29,14 @@
                     <p>{{ userData.birth_date }}</p>
                 </div>
                 <div class="data">
-                    <span>Пол </span>
+                    <span>Gender </span>
                     <p>{{ userData.gender }}</p>
                 </div>
+                <div class="data">
+                    <span>E-mail </span>
+                    <p>{{ userData.email }}</p>
+                </div>
+          
             </div>
             <div v-if="userData" class="avatar">
                 <div class="userAvatar">
@@ -53,6 +58,7 @@
                             Credits
                         </div>
                         <div class="paragraphParent">
+                            <p>Sum</p>
                             <p>Open Date</p>
                             <p>Deadline</p>
                             <p>Status</p>
@@ -60,41 +66,40 @@
                     </div>
                     <div class="usersContainer">
                         <div class="avatar">
-                            <input type="checkbox">
-                            <span class="usersAvatar"></span>
                             <span>Andrew Bojalar</span>
                         </div>
                         <div class="aboutUser">
-                            <p>Paid</p>
-                            <p>+989899898</p>
-                            <p>Designer</p>
-                        </div>
-                    </div>
-                    <div class="usersContainer">
-                        <div class="avatar">
-                            <input type="checkbox">
-                            <span class="usersAvatar"></span>
-                            <span>Andrew Bojalar</span>
-                        </div>
-                        <div class="aboutUser">
-                            <p>Unpaid</p>
-                            <p>+989899898</p>
-                            <p>Designer</p>
-                        </div>
-                    </div>
-                    <div class="usersContainer">
-                        <div class="avatar">
-                            <input type="checkbox">
-                            <span class="usersAvatar"></span>
-                            <span>Andrew Bojalar</span>
-                        </div>
-                        <div class="aboutUser">
-                            <p>Not fully paid</p>
-                            <p>+989899898</p>
-                            <p>Designer</p>
+                            <p class="titleCreditItem">1000</p>
+                            <p class="titleCreditItem">12.12.1997</p>
+                            <p class="titleCreditItem">10.12.2000</p>
+                            <p class="titleCreditItem">Designer</p>
+                            
                         </div>
                     </div>
                 </div>
+                <table>
+       <thead>
+        <th>No</th>  
+        <th>Title</th>  
+        <th>Sum</th>  
+        <th>Paid Sum</th>
+        <th>Deadline</th>
+        <th>Status</th>
+       </thead>   
+       <tbody>
+       <tr v-for="(credit, index) in credits" :key="credit">
+       <td>{{ index+1 }}</td>
+       <td>{{ credit.title }}</td>
+       <td>{{ credit.sum }}</td>
+       <td>{{ credit.paid_sum }}</td>
+       <td>{{ credit.deadline }}</td>
+       <td>
+        
+       </td>
+       </tr>
+       </tbody>
+      
+    </table>  
             </div>
         </section>
     </main>
@@ -117,11 +122,18 @@ export default {
         showLoader:false,
         userData:null,
         id:this.$route.params.id,
-        openCredit:false
+        openCredit:false,
+        credits:[{
+         title:"Test Moshina Nexia",
+         sum:"Test 1000",
+         paid_sum:"Test 880",
+         deadline:"Test 12-12-1998",
+         status:"Test PAID"
+        }]
       }
     },
     mounted(){
-    this.getUserData()
+    // this.getUserData()
     },
 
     methods:{
@@ -136,6 +148,10 @@ export default {
         .then(response => {
                       console.log(response)
                       this.userData = response.data
+                      if(response.data.is_open_credit){
+                        this.openCredit = true
+                      }
+                      this.credits = response.data.credits
                       this.changeLoadervisibility()
                       console.log("Teacher: ",this.users)
                       })  .catch(error =>{
@@ -151,5 +167,22 @@ export default {
 </script>
 
 <style>
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+td {
+  color: #2F4752;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  color: #2F4752;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+tr:hover {background-color: rgb(245, 231, 231)}
 
 </style>

@@ -38,8 +38,9 @@
                    <img v-if="userData.image" class="profileAvatar" :src="userData.image" alt="">
                    <img v-else class="profileAvatar" src="../assets/images/avatar_img.png" alt="">
                 </div>
-                <button>Edit data</button>
-                <button>Edit data</button>
+                <button class="btnEdit">Edit data</button>
+                <br>
+                <button class="btn">Edit data</button>
             </div>
         </section>
         <section class="container">
@@ -48,12 +49,12 @@
                     <div class="allUsers">
                         <div class="status">
                             <input type="checkbox">
-                            User
+                            Credits
                         </div>
                         <div class="paragraphParent">
+                            <p>Open Date</p>
+                            <p>Deadline</p>
                             <p>Status</p>
-                            <p>Phone number</p>
-                            <p>Position</p>
                         </div>
                     </div>
                     <div class="usersContainer">

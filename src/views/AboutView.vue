@@ -1,6 +1,106 @@
 <template>
-   <h1>{{ id }}</h1> 
-   <p v-if="userData">{{ userData.first_name }}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About user</title>
+</head>
+
+<body>
+    <main>
+        <section class="aboutUser container">
+            <div v-if="userData" class="dataUser">
+                <div class="data">
+                    <span>Имя</span>
+                    <p>{{ userData.first_name }}</p>
+                </div>
+                <div class="data">
+                    <span>Фамилия</span>
+                    <p>{{ userData.last_name }}</p>
+                </div>
+                <div class="data">
+                    <span>Отчество</span>
+                    <p> - </p>
+                </div>
+                <div class="data">
+                    <span>Дата рождения </span>
+                    <p>{{ userData.birth_date }}</p>
+                </div>
+                <div class="data">
+                    <span>Пол </span>
+                    <p>{{ userData.gender }}</p>
+                </div>
+            </div>
+            <div v-if="userData" class="avatar">
+                <div class="userAvatar">
+                   <img v-if="userData.image" class="profileAvatar" :src="userData.image" alt="">
+                   <img v-else class="profileAvatar" src="../assets/images/avatar_img.png" alt="">
+                </div>
+                <button>Edit data</button>
+                <button>Edit data</button>
+            </div>
+        </section>
+        <section class="container">
+            <div class="rightItem">
+                <div class="users">
+                    <div class="allUsers">
+                        <div class="status">
+                            <input type="checkbox">
+                            User
+                        </div>
+                        <div class="paragraphParent">
+                            <p>Status</p>
+                            <p>Phone number</p>
+                            <p>Position</p>
+                        </div>
+                    </div>
+                    <div class="usersContainer">
+                        <div class="avatar">
+                            <input type="checkbox">
+                            <span class="usersAvatar"></span>
+                            <span>Andrew Bojalar</span>
+                        </div>
+                        <div class="aboutUser">
+                            <p>Paid</p>
+                            <p>+989899898</p>
+                            <p>Designer</p>
+                        </div>
+                    </div>
+                    <div class="usersContainer">
+                        <div class="avatar">
+                            <input type="checkbox">
+                            <span class="usersAvatar"></span>
+                            <span>Andrew Bojalar</span>
+                        </div>
+                        <div class="aboutUser">
+                            <p>Unpaid</p>
+                            <p>+989899898</p>
+                            <p>Designer</p>
+                        </div>
+                    </div>
+                    <div class="usersContainer">
+                        <div class="avatar">
+                            <input type="checkbox">
+                            <span class="usersAvatar"></span>
+                            <span>Andrew Bojalar</span>
+                        </div>
+                        <div class="aboutUser">
+                            <p>Not fully paid</p>
+                            <p>+989899898</p>
+                            <p>Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+</body>
+
+</html>
 </template>
 
 <script>

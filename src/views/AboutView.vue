@@ -90,9 +90,14 @@
        <tr v-for="(credit, index) in credits" :key="credit">
        <td>{{ index+1 }}</td>
        <td>{{ credit.title }}</td>
-       <td>{{ credit.sum }}</td>
+       <td>{{ credit.total_sum }}</td>
        <td>{{ credit.paid_sum }}</td>
        <td>{{ credit.deadline }}</td>
+       <td>
+        <div v-if="credit.status =='PAID'" class="statusPaidCtr">Paid</div>
+        <div v-if="credit.status =='PARTIALLY_PAID'" class="statusPartiallyPaidCtr">Partially paid</div>
+        <div v-if="credit.status == 'DEBTOR'" class="statusDebtorCtr">Debtor</div>
+        </td>
        <td>
         
        </td>
@@ -123,17 +128,11 @@ export default {
         userData:null,
         id:this.$route.params.id,
         openCredit:false,
-        credits:[{
-         title:"Test Moshina Nexia",
-         sum:"Test 1000",
-         paid_sum:"Test 880",
-         deadline:"Test 12-12-1998",
-         status:"Test PAID"
-        }]
+        credits:[]
       }
     },
     mounted(){
-    // this.getUserData()
+    this.getUserData()
     },
 
     methods:{

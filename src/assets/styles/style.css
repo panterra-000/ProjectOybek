@@ -574,7 +574,7 @@ main section .rightItem .users .usersContainer .aboutUser {
 .btnDisabled{
   min-width: 180px;
   padding: 10px;
-  background: rgb(58, 57, 68);
+  background: rgb(103, 102, 110);
   border-radius: 10px;
   border: none;
   color: white;
@@ -669,6 +669,14 @@ background:  rgb(24, 85, 216);
   border-radius: 10px;
   text-align: center;
   color: white;
+}
+
+.errorText{
+  color: red;
+  background: rgb(240, 233, 222);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

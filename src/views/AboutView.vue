@@ -45,8 +45,9 @@
                 </div>
                 <button class="btnEdit">Edit data</button>
                 <br>
-                <button v-if="openCredit" class="btnCreate">Open credit</button>
+                <button v-if="openCredit" @click="openCreateCredit" class="btnCreate">Open credit</button>
                 <button v-else class="btnDisabled">Open credit</button>
+                <h3 v-if="!openCredit" class="errorText">There is a debt, the amount of debt:  <p style="color:black">{{ debtSum }}</p></h3>
             </div>
         </section>
         <section class="container">
@@ -128,6 +129,7 @@ export default {
         userData:null,
         id:this.$route.params.id,
         openCredit:false,
+        debtSum:"dd",
         credits:[]
       }
     },
@@ -136,10 +138,15 @@ export default {
     },
 
     methods:{
-      changeLoadervisibility(){
+        
+        openCreateCredit(){
+         this.$router.push('/create_credit/' + this.id )   
+        },
+
+        changeLoadervisibility(){
             this.showLoader = !this.showLoader
         },
-      getUserData(){
+        getUserData(){
         this.changeLoadervisibility()
         axios.get("http://192.168.1.104:8000/users/"+this.id,{
 
@@ -149,6 +156,8 @@ export default {
                       this.userData = response.data
                       if(response.data.is_open_credit){
                         this.openCredit = true
+                      }else{
+                        this.debtSum = response.data.get_debt_sum
                       }
                       this.credits = response.data.credits
                       this.changeLoadervisibility()
